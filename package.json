@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/ava ./test -v"
+    "test": "nyc ava ./test -v"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +23,16 @@
       "babel-register"
     ],
     "babel": "inherit"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*spec.js",
+      "**/node_modules/"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "./coverage"
   }
 }
