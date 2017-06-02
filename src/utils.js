@@ -4,18 +4,18 @@ export const toCamelCase = (str) => {
   });
 }
 
-export const isArray = (obj) => {
-  return Array.isArray(obj);
+export const isArray = (value) => {
+  return Array.isArray(value);
 }
 
-export const isString = (str) => {
-  return typeof str === 'string';
+export const isString = (value) => {
+  return typeof value === 'string';
 }
 
-export const isObject = (obj) => {
-  return typeof obj === 'object';
+export const isObject = (value) => {
+  return typeof value === 'object';
 }
 
-export const isFunction = (fn) => {
-  return typeof fn === 'function';
+export const isFunction = (value) => {
+  return typeof value === 'function';
 }

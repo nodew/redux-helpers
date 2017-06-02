@@ -16,6 +16,13 @@ test('create types', t => {
   })
 })
 
+test('create types exception with wrong args', t => {
+  const errorA = t.throws(() => createTypes("A", "TEST"))
+  t.is(errorA.message, 'types should be [string]')
+  const errorB = t.throws(() => createTypes([{}, "A"], "TEST"))
+  t.is(errorB.message, 'types should be [string]')
+})
+
 test('create async type', t => {
   t.deepEqual(createAsyncType('A', 'TEST'), {
     TEST_A: 'TEST_A',
