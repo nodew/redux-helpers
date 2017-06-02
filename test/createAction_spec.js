@@ -115,7 +115,7 @@ test('async action', t => {
       }, 1000);
     })
   );
-  return dispatch(actionC).then(() => {
+  return dispatch(actionC()).then(() => {
     t.deepEqual(
       store.getState().testC,
       { v: 100, loading: false }

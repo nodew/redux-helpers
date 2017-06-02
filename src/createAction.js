@@ -58,11 +58,11 @@ export const createActions = (...args) => {
   return actions;
 }
 
-export const createAsyncAction = (type) => (action) => (dispatch, getState) => {
+export const createAsyncAction = (type) => (action) => (...args) => (dispatch, getState) => {
   let p;
   switch (typeof action) {
     case 'function': 
-      p = action(getState())
+      p = action(...args)
       if (typeof p.then !== 'function') {
         throw new Error('action should return a Promise')
       }
