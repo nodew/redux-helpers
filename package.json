@@ -2,9 +2,10 @@
   "name": "redux-helpers",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
-    "test": "nyc ava ./test -v"
+    "test": "nyc ava ./test -v",
+    "build": "babel -d ./lib ./src"
   },
   "author": "",
   "license": "ISC",
