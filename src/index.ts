@@ -1,12 +1,9 @@
 import {
-  createAsyncType,
-  createAsyncTypes,
   createTypes
 } from './createTypes';
 
 import { 
   createAction,
-  createActions,
   createAsyncAction
 } from './createAction';
 
@@ -15,15 +12,16 @@ import {
   createAsyncReducer,
 } from './createReducer';
 
+import asyncMiddleware from './asyncMiddleware'
+
 export {
-  createAsyncType,
-  createAsyncTypes,
   createTypes,
 
   createAction,
-  createActions,
   createAsyncAction,
 
   createReducer,
-  createAsyncReducer
+  createAsyncReducer,
+
+  asyncMiddleware
 }
