@@ -5,6 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "test": "ava -v",
+    "coverage": "nyc npm run test",
     "build": "rm lib/* && tsc"
   },
   "author": "",
@@ -31,14 +32,25 @@
     ]
   },
   "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
     "exclude": [
+      "typings",
       "**/*.spec.js",
       "**/node_modules/"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
     ],
     "reporter": [
       "lcov",
       "text-summary"
     ],
-    "report-dir": "./coverage"
+    "report-dir": "./coverage",
+    "all": true
   }
 }
