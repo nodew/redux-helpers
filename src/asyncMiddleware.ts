@@ -1,4 +1,4 @@
-export default function asyncMiddleware(fetch : Promise<any>) {
+export default function asyncMiddleware() {
   return ({ dispatch, getState }) => {
     return next => action => {
       if (typeof action === 'function') {
@@ -13,8 +13,7 @@ export default function asyncMiddleware(fetch : Promise<any>) {
       const [REQUEST, SUCCESS, FAILURE] = types;
       next({ ...rest, type: REQUEST });
 
-      const actionPromise = promise(fetch);
-      actionPromise.then(
+      promise.then(
         (result) => next({ ...rest, payload: result, type: SUCCESS }),
         (error) => next({ ...rest, error, type: FAILURE })
       ).catch((error)=> {
@@ -22,7 +21,7 @@ export default function asyncMiddleware(fetch : Promise<any>) {
         next({ ...rest, error, type: FAILURE });
       });
 
-      return actionPromise;
+      return promise;
     };
   };
 }
