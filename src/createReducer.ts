@@ -23,15 +23,23 @@ export const createReducer = (initState, updates = {}) => {
 export const createAsyncReducer = (types : symbol[], initState : object = {}, updates) => {
   const [ request, success, fail ] = types;
   const defaultUpdates : object = {
-    [request]: (state : object) => Object.assign({}, state, { pending: true }),
-    [success]: (state: object, action) => Object.assign({}, state, {
-      ...action.payload,
-      pending: false,
-    }),
-    [fail]: (state: object, action) => Object.assign({}, state, {
-      error: action.error,
-      pending: false
-    })
+    [request]: (state : object) =>{
+      return { ...state, pending: true };
+    },
+    [success]: (state : object, action) => {
+      return {
+        ...state,
+        ...action.payload,
+        pending: false,
+      };
+    },
+    [fail]: (state: object, action) => {
+      return {
+        ...state,
+        error: action.error,
+        pending: false
+      }
+    }
   }
 
   return createReducer(initState, Object.assign({}, defaultUpdates, updates))
