@@ -21,7 +21,7 @@ test('create async action', t => {
   }
   const action = createAsyncAction(types, p)
   const a = action({ test: 42 })
-  t.is(a.type, types)
+  t.is(a.types, types)
   return a.promise.then((result) => {
     t.deepEqual(result, { test: 42 })
   })

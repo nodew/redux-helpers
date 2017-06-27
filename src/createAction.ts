@@ -5,21 +5,34 @@ interface syncAction {
   payload?: any,
 }
 
-interface asyncAction {
+type asyncAction = {
   types: symbol [],
   promise: Promise<any>,
+  handler?: (...args : any[]) => Promise<any>
 }
 
-export const createAction = (type : symbol) => (payload : any) : syncAction => {
+interface createActionFunc {
+  (type: symbol) : ((payload : any) => syncAction)
+}
+
+export const createAction : createActionFunc = (type) => (payload) => {
   return {
     type,
     payload
   }
 }
 
-export const createAsyncAction = (types : symbol[], promiseCreator : promiseCreatorType) => (...args : any[]) : asyncAction => {
+interface createAsyncActionFunc {
+  (types : symbol[],
+   promiseCreator : promiseCreatorType,
+   handler? : (...args : any[]) => Promise<any>
+  ) : ((...args : any[]) => asyncAction)
+}
+
+export const createAsyncAction : createAsyncActionFunc = (types, promiseCreator, handler) => (...args ) => {
   return {
     types,
-    promise: promiseCreator(...args)
+    promise: promiseCreator(...args),
+    handler,
   }
 }
