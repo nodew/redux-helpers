@@ -24,7 +24,7 @@ declare module "redux-helpers" {
 
   export function createReducer (initState : object, updates? : object) : object
 
-  export function createReducers (types: symbol[], initState: object, updates? : object) : object
+  export function createAsyncReducer (types: symbol[], initState: object, updates? : object) : object
 
   export function asyncMiddleware ({ getState, dispatch }) : ((next) => ((action) => any))
 }
